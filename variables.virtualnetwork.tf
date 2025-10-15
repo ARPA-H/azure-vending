@@ -8,6 +8,15 @@ variable "virtual_networks" {
   type = map(object({
     name                         = string
     address_space                = list(string)
+    
+    # Define a single IP address pool with id and number of IP addresses
+    # to be used for all subnets in the virtual network 
+    ip_address_pool = optional(map(object({
+      # resource id of Azure Network Manager IPAM service
+        id                     = "<id>"
+        number_of_ip_addresses = 256
+      })))
+
     resource_group_key           = optional(string)
     resource_group_name_existing = optional(string)
 
