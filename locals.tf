@@ -62,6 +62,8 @@ locals {
     for vnet_k, vnet_v in var.virtual_networks : vnet_k => {
       name          = vnet_v.name
       address_space = vnet_v.address_space
+      ip_address_pool = try(vnet_v.ip_address_pool, null)
+      
       resource_group_name = try(
         coalesce(
           try(vnet_v.resource_group_name_existing, null),

@@ -15,6 +15,13 @@ variable "virtual_networks" {
   type = map(object({
     name                = string
     address_space       = list(string)
+    ip_address_pool = optional(map(object({
+      # resource id of an existing Azure Network Manager IPAM service
+      # assumes IPAM service is already created outside this module and exists in the hub subscription
+      ipam_service_resource_id = string
+      number_of_ip_addresses = number
+    })))
+
     resource_group_name = string
 
     location = optional(string)
