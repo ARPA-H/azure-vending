@@ -8,6 +8,7 @@ module "virtual_networks" {
 
   name                    = each.value.name
   address_space           = each.value.address_space
+  # ipam_pools              = each.value.ipam_pools
   resource_group_name     = each.value.resource_group_name
   location                = coalesce(each.value.location, var.location)
   flow_timeout_in_minutes = each.value.flow_timeout_in_minutes
